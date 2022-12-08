@@ -1,7 +1,7 @@
 import hashlib
 from sys import argv, exit
 def hash(filename):
-    hasher=hashlib.sha256()
+    hasher=hashlib.md5()
     with open(filename,"r") as f:
         text=f.read()
         hasher.update(text.encode('utf-8'))
@@ -32,6 +32,7 @@ if __name__=="__main__":
     output=hash(filename)
     inp=read(filename)
     linenumber=-1
+    final=[]
     for line in inp:
         linenumber+=1
         out=str(linenumber)+":"
@@ -40,14 +41,26 @@ if __name__=="__main__":
         if line.startswith("var"):
             #possible types: string, int, float, bool, auto, label
             type=l[1]
+            #print(type)
             tmpvar=cut(line,"var")
             out+="v:"
-            if type=="string":
+            if type=="str":
                 out+="s:"
-                tmpvar=cut(tmpvar,"string")
-                out+=tmpvar
+                tmpvar=cut(tmpvar,"str")
+                name=tmpvar.split("=")[0].strip()
+                out+=name
+                value=tmpvar.split("=")[1].strip()
+                out+=value
                 
                 
         elif line.startswith("outln"):
-            out+="o:"   
-            
+            out+="o:"
+            out+=cut(line,"outln")
+        final.append(out)
+    print(final)
+    output+="\n"
+    for line in final:
+        output+=line+"\n"
+    with open(outfile,"w") as f:
+        f.write(output)
+        
