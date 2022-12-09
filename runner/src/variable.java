@@ -4,24 +4,24 @@ public class variable {
         this.name = name;
         this.type = type;
         switch (type) {
-            case "string":
+            case "s":
                 this.stringValue = value;
                 break;
-            case "int":
+            case "i":
                 try {
                     this.intValue = Integer.parseInt(value);
                 } catch (NumberFormatException e) {
                     throw new InvalidVariable("Invalid variable value for int: " + value);
                 }
                 break;
-            case "float":
+            case "f":
                 try {
                     this.floatValue = Double.parseDouble(value);
                 } catch (NumberFormatException e) {
                     throw new InvalidVariable("Invalid variable value for float: " + value);
                 }
                 break;
-            case "bool":
+            case "b":
                 if (value.equals("true")){
                     this.intValue = 1;
                 } else if (value.equals("false")) {
@@ -55,20 +55,20 @@ public class variable {
     
     public String toString() {
         switch (type) {
-            case "string":
+            case "s":
                 return stringValue;
-            case "int":
+            case "i":
                 return Integer.toString(intValue);
-            case "float":
+            case "f":
                 return Double.toString(floatValue);
-            case "bool":
+            case "b":
                 if (intValue == 1) {
                     return "true";
                 } else {
                     return "false";
                 }
             default:
-                return "Invalid variable type";
+                return "Invalid variable type: "+ type;
         }
     }
 
@@ -91,7 +91,9 @@ public class variable {
                 throw new InvalidVariable("Invalid variable type");
         }
     }
-    
+    public String getName(){
+        return this.name;
+    }
     public int toInt() throws InvalidVariable {
         switch (type) {
             case "string":

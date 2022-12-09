@@ -49,13 +49,14 @@ if __name__=="__main__":
                 tmpvar=cut(tmpvar,"str")
                 name=tmpvar.split("=")[0].strip()
                 out+=name
+                out+=":"
                 value=tmpvar.split("=")[1].strip()
                 out+=value
                 
                 
         elif line.startswith("outln"):
-            out+="o:"
-            out+=cut(line,"outln")
+            out+="ol:"
+            out+=cut(line,"outln(").strip()[:-1]
         final.append(out)
     print(final)
     output+="\n"

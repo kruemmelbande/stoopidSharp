@@ -1,11 +1,10 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.util.*;
 public class App {
     
     public static void main(String[] args) throws stoopidException {
         //String filename= args[0];
-        String filename= "examples/stoopidbytes.stbc";
+        String filename= "examples/hello.stbc";
         String [] program;
         try {
             BufferedReader reader = new BufferedReader(new FileReader(filename));
