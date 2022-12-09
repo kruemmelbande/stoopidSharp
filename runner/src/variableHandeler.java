@@ -26,6 +26,6 @@ public class variableHandeler {
         return;
     }
     public ArrayList<variable> getVars(){
-        return this.vars;
+        return vars;
     }
 }

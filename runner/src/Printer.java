@@ -11,7 +11,7 @@ public class Printer {
             }
 
         }
-        System.out.println("var not found: " + Var);
+        System.out.println(Var);
     }
     
 }
