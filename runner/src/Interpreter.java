@@ -7,6 +7,7 @@ public class Interpreter {
         String [] splitout;
         variableHandeler varman = new variableHandeler();
         Printer printman = new Printer();
+        Mather mathman = new Mather();
         int i =0;
         while(i< program.length){
             splitout=program[i].split(":");
@@ -17,6 +18,8 @@ public class Interpreter {
                 case "ol":
                     printman.print(splitout[2], varman.getVars());
                     break;
+                case "m":
+                    varman.execute(["f",splitout[2],""+mathman.solve(Double.parseDouble(splitout[3]),Double.parseDouble(splitout[4]),(splitout[5]))]);
                 default:
                     System.out.println("Unkown keyword: "+splitout[1]);
                     break;
